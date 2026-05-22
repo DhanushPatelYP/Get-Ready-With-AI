@@ -1,6 +1,11 @@
 from fastapi import FastAPI
-from app.api.v1.api import api_router
 from fastapi.middleware.cors import CORSMiddleware
+
+from app.api.v1.api import api_router
+from app.db.database import Base,engine
+from app.models.user import User
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="AI Interview Platform API",
